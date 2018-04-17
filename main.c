@@ -4,6 +4,7 @@
 // C++ bindings
 #include "mt_random.h" // Merseinne Twister
 #include "timer.h"     // chrono
+#include "avg.h"
 
 // Our median implementations.
 #include "qmedian.h"
@@ -26,10 +27,19 @@ int main(int argc, char *argv[])
         numTrials = atoi(argv[4]);
     }
 
-    printf("start: %zu\tstop: %zu\tnumIncrements: %zu\tnumTrials: %zu\n", start, stop, numIncrements, numTrials);
-    long tf = get_monotime();
+    int *data = malloc(stop * sizeof(int));
+    if (data == NULL)
+    {
+        printf("Could not allocate memory. Try a smaller end size.\n");
+        return -1;
+    }
 
-    printf("Nanoseconds: %ld\n", tf - t0);
+    // Placeholder stuff.
+    printf("start: %zu\tstop: %zu\tnumIncrements: %zu\tnumTrials: %zu\n", start, stop, numIncrements, numTrials);
+
+    // Our output file.
+    FILE *f = fopen("results.csv", "w");
+    fprintf(f, "INPUT_SIZE, BRUTE_NUM_OPERATIONS, BRUTE_NANOSECONDS, QUICK_NUM_OPERATIONS, QUICK_NANOSECONDS\n");
 
     return 0;
 }
