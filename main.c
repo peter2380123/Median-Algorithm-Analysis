@@ -10,6 +10,8 @@
 #include "qmedian.h"
 #include "bfmedian.h"
 
+// Testing testing 123 from Visual Studio.
+
 int main(int argc, char *argv[])
 {
     long t0 = get_monotime();
