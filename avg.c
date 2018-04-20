@@ -1,5 +1,6 @@
+#include <stddef.h>
+
 #include "avg.h"
-#include "stddef.h"
 
 double average_values(long long *arr, size_t N)
 {

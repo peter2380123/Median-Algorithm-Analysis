@@ -7,8 +7,8 @@
 #include "avg.h"
 
 // Our median implementations.
-#include "qmedian.h"
-#include "bfmedian.h"
+#include "qmedian.h"  // Quick median.
+#include "bfmedian.h" // Brute-force median.
 
 // Testing testing 123 from Visual Studio.
 
