@@ -11,4 +11,4 @@
 // size:
 //  Size of the array.
 //
-int *populate_random(int *mem, size_t size);
+void populate_random(int *mem, const size_t size);
