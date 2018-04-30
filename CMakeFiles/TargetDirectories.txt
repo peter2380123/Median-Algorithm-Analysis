@@ -1,5 +1,0 @@
-C:/Users/peter/Source/Repos/CAB301-A2/CMakeFiles/timer.dir
-C:/Users/peter/Source/Repos/CAB301-A2/CMakeFiles/mtrandom.dir
-C:/Users/peter/Source/Repos/CAB301-A2/CMakeFiles/median.dir
-C:/Users/peter/Source/Repos/CAB301-A2/CMakeFiles/ALL_BUILD.dir
-C:/Users/peter/Source/Repos/CAB301-A2/CMakeFiles/ZERO_CHECK.dir
