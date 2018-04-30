@@ -32,10 +32,6 @@ int main(int argc, char *argv[])
         numTrials = atoi(argv[4]);
     }
 #elif _MSC_VER
-	/*unsigned int start_value;
-	unsigned int stop_value;
-	int numIncrements;
-	int numTrial;*/
 	printf("Declare inclusive start value for the random array: ");
 	scanf("%zu", &start);
 	printf("Declare inclusive stop value for the random array: ");
