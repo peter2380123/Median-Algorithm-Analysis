@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // C++ bindings
 #include "mt_random.h" // Merseinne Twister
@@ -10,7 +11,7 @@
 #include "qmedian.h"  // Quick median.
 #include "bfmedian.h" // Brute-force median.
 
-// Testing testing 123 from Visual Studio.
+#define MAX(x, y) (((x) >= (y)) ? (x) : (y))
 
 int main(int argc, char *argv[])
 {
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
 	unsigned int stop_value;
 	int numIncrements;
 	int numTrial;*/
-	printf("Delcare inclusive start value for the random array: ");
+	printf("Declare inclusive start value for the random array: ");
 	scanf("%zu", &start);
 	printf("Declare inclusive stop value for the random array: ");
 	scanf("%zu", &stop);
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
 
 #endif
 
+    double increment = MAX(1, (stop - (double)start) / MAX(1.0, ((double)numIncrements-1.0)));
 
     int *data = malloc(stop * sizeof(int));
     if (data == NULL)
@@ -57,9 +59,18 @@ int main(int argc, char *argv[])
     // Placeholder stuff.
     printf("start: %zu\tstop: %zu\tnumIncrements: %zu\tnumTrials: %zu\n", start, stop, numIncrements, numTrials);
 
+    for (double i_ = start; round(i_) <= stop; i_ += increment)
+    {
+        const size_t i = round(i_); // Do not change.
+        printf("i_: %f\n", i_);
+        printf("i = %zu\n", i);
+    }
+
     // Our output file.
     FILE *f = fopen("results.csv", "w");
     fprintf(f, "INPUT_SIZE, BRUTE_NUM_OPERATIONS, BRUTE_NANOSECONDS, QUICK_NUM_OPERATIONS, QUICK_NANOSECONDS\n");
+
+    free(data);
 
     return 0;
 
