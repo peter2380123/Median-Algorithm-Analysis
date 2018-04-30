@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
 #endif
 
-    double increment = MAX(1, (stop - (double)start) / MAX(1, numIncrements-1));
+    double increment = MAX(1, (stop - (double)start) / MAX(1.0, ((double)numIncrements-1.0)));
 
     int *data = malloc(stop * sizeof(int));
     if (data == NULL)
@@ -47,9 +47,10 @@ int main(int argc, char *argv[])
     // Placeholder stuff.
     printf("start: %zu\tstop: %zu\tnumIncrements: %zu\tnumTrials: %zu\n", start, stop, numIncrements, numTrials);
 
-    for (double i_ = start; i_ <= stop; i_ += increment)
+    for (double i_ = start; round(i_) <= stop; i_ += increment)
     {
         const size_t i = round(i_); // Do not change.
+        printf("i_: %f\n", i_);
         printf("i = %zu\n", i);
     }
 
