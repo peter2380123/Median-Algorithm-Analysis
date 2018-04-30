@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-    size_t start, stop, numIncrements, numTrials;
+    size_t start, stop = 100, numIncrements = 1, numTrials = 1;
 
 #ifdef __GNUC__
     if (argc < 4 || argc > 5)
@@ -30,7 +30,19 @@ int main(int argc, char *argv[])
     {
         numTrials = atoi(argv[4]);
     }
-#elif _MSC_VER_
+#elif _MSC_VER
+	/*unsigned int start_value;
+	unsigned int stop_value;
+	int numIncrements;
+	int numTrial;*/
+	printf("Delcare inclusive start value for the random array: ");
+	scanf("%zu", &start);
+	printf("Declare inclusive stop value for the random array: ");
+	scanf("%zu", &stop);
+	printf("Number of increments: ");
+	scanf("%zu", &numIncrements);
+	printf("Number of trials to run: ");
+	scanf("%zu", &numTrials);
 
 #endif
 
@@ -50,4 +62,6 @@ int main(int argc, char *argv[])
     fprintf(f, "INPUT_SIZE, BRUTE_NUM_OPERATIONS, BRUTE_NANOSECONDS, QUICK_NUM_OPERATIONS, QUICK_NANOSECONDS\n");
 
     return 0;
+
+
 }
