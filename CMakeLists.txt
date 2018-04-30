@@ -13,6 +13,7 @@ add_executable(median
     avg.c
     avg.h
     bfmedian.h
+    bfmedian.c
     main.c
     qmedian.c
     qmedian.h

@@ -50,4 +50,6 @@ int main(int argc, char *argv[])
     fprintf(f, "INPUT_SIZE, BRUTE_NUM_OPERATIONS, BRUTE_NANOSECONDS, QUICK_NUM_OPERATIONS, QUICK_NANOSECONDS\n");
 
     return 0;
+
+
 }
