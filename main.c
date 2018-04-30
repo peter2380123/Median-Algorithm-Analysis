@@ -14,20 +14,26 @@
 
 int main(int argc, char *argv[])
 {
-    long t0 = get_monotime();
+    size_t start, stop, numIncrements, numTrials;
 
+#ifdef __GNUC__
     if (argc < 4 || argc > 5)
     {
         printf("./median start stop numberOfIncrements numberOfTrials\n");
         return -1;
     }
-
-    size_t start = atoi(argv[1]), stop = atoi(argv[2]), numIncrements = atoi(argv[3]), numTrials = 1;
-
+    start = atoi(argv[1]);
+    stop = atoi(argv[2]); 
+    numIncrements = atoi(argv[3]); 
+    numTrials = 1;
     if (argc == 5)
     {
         numTrials = atoi(argv[4]);
     }
+#elif _MSC_VER_
+
+#endif
+
 
     int *data = malloc(stop * sizeof(int));
     if (data == NULL)
