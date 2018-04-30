@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	unsigned int stop_value;
 	int numIncrements;
 	int numTrial;*/
-	printf("Delcare inclusive start value for the random array: ");
+	printf("Declare inclusive start value for the random array: ");
 	scanf("%zu", &start);
 	printf("Declare inclusive stop value for the random array: ");
 	scanf("%zu", &stop);
