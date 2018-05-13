@@ -9,15 +9,30 @@ project(median VERSION 1.0
 add_library(timer STATIC timer.h timer.cpp)
 add_library(mtrandom STATIC mt_random.h mt_random.cpp)
 
-add_executable(median
+set(files
     avg.c
     avg.h
     bfmedian.h
     bfmedian.c
     main.c
     qmedian.c
-    qmedian.h
-    random_array.c
-    random_array.h)
+    qmedian.h)
 
-target_link_libraries(median timer mtrandom)
+set(libs
+    timer
+    mtrandom
+    )
+
+add_executable(mediantime
+    ${files}
+    )
+add_executable(medianops
+    ${files}
+    )
+
+target_compile_options(medianops
+    PRIVATE
+    -DBASIC_OPS)
+
+target_link_libraries(mediantime ${libs})
+target_link_libraries(medianops ${libs})
