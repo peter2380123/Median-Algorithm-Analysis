@@ -27,7 +27,7 @@ static void populate_random(int *mem, const size_t size)
 {
     for (size_t i = 0; i < size; ++i)
     {
-        mem[i] = mt_random(INT_MIN, INT_MAX);
+        mem[i] = mt_random(1, 20);
     }
 }
 
@@ -41,9 +41,9 @@ int main(int argc, char *argv[])
       unsigned int stop_value;
       int numIncrements;
       int numTrial;*/
-    printf("Declare inclusive start value for the random array: ");
+    printf("Declare inclusive start size of the random array: ");
     scanf("%zu", &start);
-    printf("Declare inclusive stop value for the random array: ");
+    printf("Declare inclusive stop size of the random array: ");
     scanf("%zu", &stop);
     printf("Number of increments: ");
     scanf("%zu", &numIncrements);
@@ -109,6 +109,20 @@ int main(int argc, char *argv[])
             // machine with both a C and C++ compiler -- which is guaranteed in
             // this subject as both languages are accepted.
             populate_random(data, N);
+			for (size_t i = 0; i < N; i++) {
+				if (i == 0) 
+				{
+				}
+				else
+				{
+					printf(", ");
+				}
+				printf("%zu",data[i]);
+			}
+			printf("\n");
+
+
+			
 
             long long t0, tf;
             // We're doing a comparison, and therefore should have the functions
@@ -117,14 +131,15 @@ int main(int argc, char *argv[])
             // Therefore, we run brute force median first.
 #ifndef COUNT_OPS // TODO: Switch around when both implemented.
             t0 = get_monotime();
-            bfm(data, N);
+            printf("The brute-force median selected was: %zu\n",bfm(data, N));
             tf = get_monotime();
+
 
             bfTotal += tf - t0;
 
             // Now our quick median.
             t0 = get_monotime();
-            qm_median(data, N);
+			printf("The quick median selected was: %zu\n", qm_median(data, N));
             tf = get_monotime();
 
             quickTotal += tf - t0;
