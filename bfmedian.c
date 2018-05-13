@@ -1,10 +1,10 @@
-# include "bfmedian.h"
-# include "stdio.h"
-# include "math.h"
+#include "bfmedian.h"
+#include "stdio.h"
+#include "math.h"
 
 size_t bfm(int *arr, size_t size)
 {
-	int k = round(size / 2);
+	int k = ceil(size / 2.0f);
 
 	for (int i = 0; i < size; i++)
 	{
