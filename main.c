@@ -27,9 +27,9 @@ static void populate_random(int *mem, const size_t size)
 {
     for (size_t i = 0; i < size; ++i)
     {
-        //mem[i] = mt_random(INT_MIN, INT_MAX);
+        mem[i] = mt_random(INT_MIN, INT_MAX);
 		//mem[i] = i + 1; // for values 1 to n, ascending (sorted). 
-		mem[i] = size - i; // for values n to 1, descending (unsorted).
+		//mem[i] = size - i; // for values n to 1, descending (unsorted).
     }
 }
 
@@ -119,7 +119,8 @@ int main(int argc, char *argv[])
             // this subject as both languages are accepted.
             populate_random(data, N);
 
-			printf("Generated random values: ");
+			/*
+			printf("Generated values: ");
 			for (size_t i = 0; i < N; i++) {
 				if (i == 0) 
 				{
@@ -131,6 +132,7 @@ int main(int argc, char *argv[])
 				printf("%d",data[i]);
 			}
 			printf("\n");
+			*/
 
 
 			
@@ -142,16 +144,18 @@ int main(int argc, char *argv[])
             // Therefore, we run brute force median first.
 #ifndef COUNT_OPS // TODO: Switch around when both implemented.
             t0 = get_monotime();
-            printf("The brute-force median selected was: %d\n",bfm(data, N));
+            printf("The brute-force median selected was: %d",bfm(data, N));
             tf = get_monotime();
+			printf(", and time measured was: %ld nanoseconds\n", tf - t0);
 
 
             bfTotal += tf - t0;
 
             // Now our quick median.
             t0 = get_monotime();
-			printf("The quick median selected was: %d\n", qm_median(data, N));
+			printf("The quick median selected was: %d", qm_median(data, N));
             tf = get_monotime();
+			printf(", and time measured was: %ld nanoseconds\n", tf - t0);
 
 			printf("\n");
             quickTotal += tf - t0;
