@@ -27,7 +27,9 @@ static void populate_random(int *mem, const size_t size)
 {
     for (size_t i = 0; i < size; ++i)
     {
-        mem[i] = mt_random(1, 20);
+        //mem[i] = mt_random(INT_MIN, INT_MAX);
+		//mem[i] = i + 1; // for values 1 to n, ascending (sorted). 
+		mem[i] = size - i; // for values n to 1, descending (unsorted).
     }
 }
 
@@ -49,6 +51,8 @@ int main(int argc, char *argv[])
     scanf("%zu", &numIncrements);
     printf("Number of trials to run: ");
     scanf("%zu", &numTrials);
+
+	printf("\n");
 #else
     if (argc < 4 || argc > 5)
     {
@@ -99,7 +103,12 @@ int main(int argc, char *argv[])
         {
 
             // Give user some feedback to what is happening.
-            printf("Trial %zu of %zu, n = %zu\n", trial, numTrials, N);
+            printf("Trial %zu of %zu, n = %zu", trial, numTrials, N);
+			if (N % 2 == 0) {
+				printf(" (even number, expect different Median result)\n");
+			}
+			else
+				printf(" (odd number, should have the same Median)\n");
 
             // Populate data with random values, using the standardised
             // Merseinne Twister implementation from C++. We use this instead of
@@ -109,6 +118,8 @@ int main(int argc, char *argv[])
             // machine with both a C and C++ compiler -- which is guaranteed in
             // this subject as both languages are accepted.
             populate_random(data, N);
+
+			printf("Generated random values: ");
 			for (size_t i = 0; i < N; i++) {
 				if (i == 0) 
 				{
@@ -117,7 +128,7 @@ int main(int argc, char *argv[])
 				{
 					printf(", ");
 				}
-				printf("%zu",data[i]);
+				printf("%d",data[i]);
 			}
 			printf("\n");
 
@@ -131,7 +142,7 @@ int main(int argc, char *argv[])
             // Therefore, we run brute force median first.
 #ifndef COUNT_OPS // TODO: Switch around when both implemented.
             t0 = get_monotime();
-            printf("The brute-force median selected was: %zu\n",bfm(data, N));
+            printf("The brute-force median selected was: %d\n",bfm(data, N));
             tf = get_monotime();
 
 
@@ -139,9 +150,10 @@ int main(int argc, char *argv[])
 
             // Now our quick median.
             t0 = get_monotime();
-			printf("The quick median selected was: %zu\n", qm_median(data, N));
+			printf("The quick median selected was: %d\n", qm_median(data, N));
             tf = get_monotime();
 
+			printf("\n");
             quickTotal += tf - t0;
 #else
             // Code to count basic operations goes here.
