@@ -10,9 +10,3 @@ size_t qm_median(int *arr, size_t size);
 #ifdef COUNT_OPS
 size_t qm_getBasicOps();
 #endif
-
-////////////////////////////////////////////////////////////////////////////////
-// HELPER FUNCTIONS - Exposed for easy unit-testing.
-////////////////////////////////////////////////////////////////////////////////
-size_t _qm_select(int *arr, size_t low, size_t median, size_t high);
-size_t _qm_partition(int *arr, size_t low, size_t high);

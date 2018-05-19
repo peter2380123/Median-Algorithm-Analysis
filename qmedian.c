@@ -1,36 +1,48 @@
 #include "qmedian.h"
 
+#define SWAP(x, y) \
+do                 \
+{                  \
+    int tmp = x;   \
+    x = y;         \
+    y = tmp;       \
+} while (0);
+
 #ifdef COUNT_OPS
-#define SWAP(x, y) \
-do                 \
-{                  \
-    int tmp = x;   \
-    x = y;         \
-    y = tmp;       \
-    ++_quickBasicOps; \ // As #ifdef cannot be used inside another macro definition.
-} while (0);
+#define COUNT_OPERATION(x) \
+    ++_quickBasicOps;
 #else
-#define SWAP(x, y) \
-do                 \
-{                  \
-    int tmp = x;   \
-    x = y;         \
-    y = tmp;       \
-} while (0);
+#define COUNT_OPERATION(x)
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+// Function prototypes.
+////////////////////////////////////////////////////////////////////////////////
+static size_t _qm_select(int *arr, size_t low, size_t middle, size_t high);
+static size_t _qm_partition(int *arr, size_t low, size_t high);
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Basic operations count conditional compilation.
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef COUNT_OPS
 static size_t _quickBasicOps = 0;
-
 size_t qm_getBasicOps()
 {
     return _quickBasicOps;
 }
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+// Implementation.
+////////////////////////////////////////////////////////////////////////////////
+//
 size_t qm_median(int *arr, size_t size)
 {
+#ifdef COUNT_OPS
+    _quickBasicOps = 0;
+#endif
     if (size == 1)
     {
         return arr[0];
@@ -41,9 +53,10 @@ size_t qm_median(int *arr, size_t size)
     }
 }
 
-size_t _qm_select(int *arr, size_t low, size_t middle, size_t high)
+static size_t _qm_select(int *arr, size_t low, size_t middle, size_t high)
 {
     size_t pos = _qm_partition(arr, low, high);
+
     if (pos == middle)
     {
         return arr[pos];
@@ -58,13 +71,14 @@ size_t _qm_select(int *arr, size_t low, size_t middle, size_t high)
     }
 }
 
-size_t _qm_partition(int *arr, size_t low, size_t high)
+static size_t _qm_partition(int *arr, size_t low, size_t high)
 {
     int    pivot_value       = arr[low];
     size_t pivot_location    = low;
 
     for (size_t j = low+1; j <= high; ++j)
     {
+        COUNT_OPERATION(_quickBasicOps);
         if (arr[j] < pivot_value)
         {
             ++pivot_location;

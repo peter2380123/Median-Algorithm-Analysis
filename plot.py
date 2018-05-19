@@ -14,7 +14,7 @@ ylabel = sys.argv[4]
 data = np.genfromtxt(filename, delimiter=',', names=['N', 'Brute', 'Quick'])
 
 plt.figure(num=None, figsize=(8, 6), dpi=300, facecolor='w', edgecolor='k')
-plt.plot(data['N'], data['Brute'], 'b.')
+#plt.plot(data['N'], data['Brute'], 'b.')
 plt.plot(data['N'], data['Quick'], 'r.')
 plt.xlabel('Input size')
 plt.ylabel(ylabel)

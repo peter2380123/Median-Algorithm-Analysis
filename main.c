@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
             // Now our quick median.
             qm_median(data, N);
             quickTotal += qm_getBasicOps();
-            printf("\tQuick median finished, measured %zu nanoseconds.\n", qm_getBasicOps());
+            printf("\tQuick median finished, measured %zu operations.\n", qm_getBasicOps());
 #else
             t0 = get_monotime();
             bfm(data, N);
