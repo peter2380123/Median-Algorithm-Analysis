@@ -4,6 +4,7 @@
 
 size_t bfm(int *arr, size_t size)
 {
+	size_t _bfmBasicOps = 0;
 	int k = ceil(size / 2.0);
 
 	for (int i = 0; i < size; i++)
@@ -24,6 +25,9 @@ size_t bfm(int *arr, size_t size)
 					numequal++;
 				}
 			}
+#ifdef COUNT_OPS
+			_bfmBasicOps++;
+#endif
 		}
 
 		if (numsmaller < k && k <= (numsmaller + numequal))
