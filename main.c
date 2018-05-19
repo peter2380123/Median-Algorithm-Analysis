@@ -136,6 +136,7 @@ int main(int argc, char *argv[])
 #endif
         } // end trials for.
 
+#ifndef COUNT_OPS
         // At this point, we need to take the average to make any sense of our
         // result. Awkward cast to make sure this is not an integer division.
         double bfAverage = bfTotal / (double)numTrials;
@@ -144,6 +145,7 @@ int main(int argc, char *argv[])
         // Now we an write this result into the file, appending it to whatever
         // was there last.
         fprintf(f, "%zd, %f, %f\n", N, bfAverage, quickAverage);
+#endif
 
     } // end N for.
 
