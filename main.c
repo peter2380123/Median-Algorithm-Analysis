@@ -138,24 +138,26 @@ int main(int argc, char *argv[])
 			
 
             long long t0, tf;
+			int result;
             // We're doing a comparison, and therefore should have the functions
             // both find the median from the same sequence of numbers. Note that
             // brute force median causes no side-effects, but quick median does.
             // Therefore, we run brute force median first.
 #ifndef COUNT_OPS // TODO: Switch around when both implemented.
             t0 = get_monotime();
-            printf("The brute-force median selected was: %d",bfm(data, N));
+            result = bfm(data, N);
             tf = get_monotime();
-			printf(", and time measured was: %ld nanoseconds\n", tf - t0);
-
+			printf("The brute-force median selected was: %d", result);
+			printf(", and time measured was: %lld nanoseconds\n", tf - t0);
 
             bfTotal += tf - t0;
 
             // Now our quick median.
             t0 = get_monotime();
-			printf("The quick median selected was: %d", qm_median(data, N));
+			result = qm_median(data, N);
             tf = get_monotime();
-			printf(", and time measured was: %ld nanoseconds\n", tf - t0);
+			printf("The quick median selected was: %d", result);
+			printf(", and time measured was: %lld nanoseconds\n", tf - t0);
 
 			printf("\n");
             quickTotal += tf - t0;
