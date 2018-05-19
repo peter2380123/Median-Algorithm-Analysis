@@ -32,7 +32,7 @@ add_executable(medianops
 
 target_compile_options(medianops
     PRIVATE
-    -DBASIC_OPS)
+    -DCOUNT_OPS)
 
 target_link_libraries(mediantime ${libs})
 target_link_libraries(medianops ${libs})
