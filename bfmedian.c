@@ -4,7 +4,7 @@
 
 size_t bfm(int *arr, size_t size)
 {
-	int k = ceil(size / 2.0f);
+	int k = ceil(size / 2.0);
 
 	for (int i = 0; i < size; i++)
 	{
