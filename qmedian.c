@@ -85,6 +85,7 @@ static size_t _qm_partition(int *arr, size_t low, size_t high)
             SWAP(arr[pivot_location], arr[j]);
         }
     }
+
     SWAP(arr[low], arr[pivot_location]);
     
     return pivot_location;
