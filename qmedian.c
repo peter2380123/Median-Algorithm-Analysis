@@ -8,15 +8,8 @@ do                 \
     y = tmp;       \
 } while (0);
 
-#ifdef COUNT_OPS
-#define COUNT_OPERATION(x) \
-    ++_quickBasicOps;
-#else
-#define COUNT_OPERATION(x)
-#endif
-
 ////////////////////////////////////////////////////////////////////////////////
-// Function prototypes.
+// Private function prototypes.
 ////////////////////////////////////////////////////////////////////////////////
 static size_t _qm_select(int *arr, size_t low, size_t middle, size_t high);
 static size_t _qm_partition(int *arr, size_t low, size_t high);
@@ -43,6 +36,7 @@ size_t qm_median(int *arr, size_t size)
 #ifdef COUNT_OPS
     _quickBasicOps = 0;
 #endif
+
     if (size == 1)
     {
         return arr[0];
@@ -78,13 +72,16 @@ static size_t _qm_partition(int *arr, size_t low, size_t high)
 
     for (size_t j = low+1; j <= high; ++j)
     {
-        COUNT_OPERATION(_quickBasicOps);
+#ifdef COUNT_OPS
+        ++_quickBasicOps;
+#endif
         if (arr[j] < pivot_value)
         {
             ++pivot_location;
             SWAP(arr[pivot_location], arr[j]);
         }
     }
+
     SWAP(arr[low], arr[pivot_location]);
     
     return pivot_location;
