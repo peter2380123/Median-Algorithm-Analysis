@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
             quickTotal += tf - t0;
             printf("\tQuick median finished, measured %lld nanoseconds.\n", tf - t0);
 #else
-            // Code to count basic operations goes here.
+            // Code to count basic operations goes here. 
 #endif
         } // end trials for.
 
