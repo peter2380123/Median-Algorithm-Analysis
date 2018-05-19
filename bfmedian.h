@@ -6,3 +6,6 @@
 ///////////////////////////////////////////////////////////////
 size_t bfm(int *arr, size_t size);
 
+#ifdef COUNT_OPS
+size_t bfm_getBasicOps();
+#endif

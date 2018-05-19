@@ -8,6 +8,16 @@ do                 \
     y = tmp;       \
 } while (0);
 
+
+#ifdef COUNT_OPS
+static size_t g_quickBasicOps = 0;
+
+size_t qm_getBasicOps()
+{
+    return g_quickBasicOps;
+}
+#endif
+
 size_t qm_median(int *arr, size_t size)
 {
     if (size == 1)
@@ -49,6 +59,9 @@ size_t _qm_partition(int *arr, size_t low, size_t high)
             ++pivot_location;
             SWAP(arr[pivot_location], arr[j]);
         }
+#ifdef COUNT_OPS
+        ++g_quickBasicOps;
+#endif
     }
     SWAP(arr[low], arr[pivot_location]);
     

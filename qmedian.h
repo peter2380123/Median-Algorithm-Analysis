@@ -7,6 +7,9 @@
 
 size_t qm_median(int *arr, size_t size);
 
+#ifdef COUNT_OPS
+size_t qm_getBasicOps();
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // HELPER FUNCTIONS - Exposed for easy unit-testing.

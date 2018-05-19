@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
         {
 
             // Give user some feedback to what is happening.
-            printf("Trial %zu of %zu, n = %zu\n", trial, numTrials, N);
+            printf("Trial %zu of %zu, n = %zu/%zu\n", trial, numTrials, N, stop);
 
             // Populate data with random values, using the standardised
             // Merseinne Twister implementation from C++. We use this instead of
@@ -132,10 +132,11 @@ int main(int argc, char *argv[])
             quickTotal += tf - t0;
             printf("\tQuick median finished, measured %lld nanoseconds.\n", tf - t0);
 #else
-            // Code to count basic operations goes here.
+            // Code to count basic operations goes here. 
 #endif
         } // end trials for.
 
+#ifndef COUNT_OPS
         // At this point, we need to take the average to make any sense of our
         // result. Awkward cast to make sure this is not an integer division.
         double bfAverage = bfTotal / (double)numTrials;
@@ -144,6 +145,7 @@ int main(int argc, char *argv[])
         // Now we an write this result into the file, appending it to whatever
         // was there last.
         fprintf(f, "%zd, %f, %f\n", N, bfAverage, quickAverage);
+#endif
 
     } // end N for.
 
