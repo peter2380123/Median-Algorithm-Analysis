@@ -103,12 +103,15 @@ int main(int argc, char *argv[])
         {
 
             // Give user some feedback to what is happening.
-            printf("Trial %zu of %zu, n = %zu", trial, numTrials, N);
+            printf("Trial %zu of %zu, n = %zu\n", trial, numTrials, N);
+			
+			/*
 			if (N % 2 == 0) {
 				printf(" (even number, expect different Median result)\n");
 			}
 			else
 				printf(" (odd number, should have the same Median)\n");
+			*/
 
             // Populate data with random values, using the standardised
             // Merseinne Twister implementation from C++. We use this instead of
