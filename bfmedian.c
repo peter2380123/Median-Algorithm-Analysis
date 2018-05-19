@@ -3,7 +3,7 @@
 #include "math.h"
 
 #ifdef COUNT_OPS
-static size_t _bfmBasicOps = 0;
+static size_t _bfmBasicOps;
 
 size_t bfm_getBasicOps()
 {
@@ -13,6 +13,10 @@ size_t bfm_getBasicOps()
 
 size_t bfm(int *arr, size_t size)
 {
+#ifdef COUNT_OPS
+	_bfmBasicOps = 0;
+#endif
+	
 	int k = ceil(size / 2.0);
 
 	for (int i = 0; i < size; i++)
