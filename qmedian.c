@@ -10,11 +10,11 @@ do                 \
 
 
 #ifdef COUNT_OPS
-static size_t g_quickBasicOps = 0;
+static size_t _quickBasicOps = 0;
 
 size_t qm_getBasicOps()
 {
-    return g_quickBasicOps;
+    return _quickBasicOps;
 }
 #endif
 
@@ -60,7 +60,7 @@ size_t _qm_partition(int *arr, size_t low, size_t high)
             SWAP(arr[pivot_location], arr[j]);
         }
 #ifdef COUNT_OPS
-        ++g_quickBasicOps;
+        ++_quickBasicOps;
 #endif
     }
     SWAP(arr[low], arr[pivot_location]);
