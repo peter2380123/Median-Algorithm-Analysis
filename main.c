@@ -17,9 +17,11 @@
 #ifdef COUNT_OPS
 const char *brute_result = "BRUTE_OPERATIONS";
 const char *quick_result = "QUICK_OPERATIONS";
+const char *filename = "results_ops.csv";
 #else
 const char *brute_result = "BRUTE_TIME";
 const char *quick_result = "QUICK_TIME";
+const char *filename = "results_time.csv";
 #endif
 
 // A helper function to fill an existing array with random values.
@@ -83,7 +85,7 @@ int main(int argc, char *argv[])
     }
 
     // Our output file.
-    FILE *f = fopen("results.csv", "w");
+    FILE *f = fopen(filename, "w");
     fprintf(f, "INPUT_SIZE, %s, %s\n", brute_result, quick_result);
 
     // For every N...
