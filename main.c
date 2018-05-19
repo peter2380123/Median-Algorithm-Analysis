@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
             // machine with both a C and C++ compiler -- which is guaranteed in
             // this subject as both languages are accepted.
             populate_random(data, N);
-#ifndef BASIC_OPS
+#ifndef COUNT_OPS
             long long t0, tf;
 #endif
             // We're doing a comparison, and therefore should have the functions

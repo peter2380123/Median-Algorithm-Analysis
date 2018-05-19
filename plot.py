@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 
-if len(sys.argv) < 2:
+if len(sys.argv) < 5:
     raise Exception("./plot.py input_filename output_filename title ylabel")
 
 filename = sys.argv[1]
