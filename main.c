@@ -116,11 +116,13 @@ int main(int argc, char *argv[])
             // brute force median causes no side-effects, but quick median does.
             // Therefore, we run brute force median first.
 #ifndef COUNT_OPS // TODO: Switch around when both implemented.
+
             t0 = get_monotime();
             bfm(data, N);
             tf = get_monotime();
 
             bfTotal += tf - t0;
+            printf("\tBrute force finished, measured %lld nanoseconds.\n", tf - t0);
 
             // Now our quick median.
             t0 = get_monotime();
@@ -128,6 +130,7 @@ int main(int argc, char *argv[])
             tf = get_monotime();
 
             quickTotal += tf - t0;
+            printf("\tQuick median finished, measured %lld nanoseconds.\n", tf - t0);
 #else
             // Code to count basic operations goes here.
 #endif
