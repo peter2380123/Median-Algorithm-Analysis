@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
         {
 
             // Give user some feedback to what is happening.
-            printf("Trial %zu of %zu, n = %zu\n", trial, numTrials, N);
+            printf("Trial %zu of %zu, n = %zu/%zu\n", trial, numTrials, N, stop);
 
             // Populate data with random values, using the standardised
             // Merseinne Twister implementation from C++. We use this instead of
