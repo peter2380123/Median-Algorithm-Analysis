@@ -111,14 +111,24 @@ int main(int argc, char *argv[])
             // machine with both a C and C++ compiler -- which is guaranteed in
             // this subject as both languages are accepted.
             populate_random(data, N);
-
+#ifndef BASIC_OPS
             long long t0, tf;
+#endif
             // We're doing a comparison, and therefore should have the functions
             // both find the median from the same sequence of numbers. Note that
             // brute force median causes no side-effects, but quick median does.
             // Therefore, we run brute force median first.
-#ifndef COUNT_OPS // TODO: Switch around when both implemented.
+#ifdef COUNT_OPS
+            // Code to count basic operations goes here.
+            bfm(data, N);
+            bfTotal += bfm_getBasicOps();
+            printf("\tBrute force finished, measured %zu operations.\n", bfm_getBasicOps());
 
+            // Now our quick median.
+            qm_median(data, N);
+            quickTotal += qm_getBasicOps();
+            printf("\tQuick median finished, measured %zu nanoseconds.\n", qm_getBasicOps());
+#else
             t0 = get_monotime();
             bfm(data, N);
             tf = get_monotime();
@@ -133,12 +143,9 @@ int main(int argc, char *argv[])
 
             quickTotal += tf - t0;
             printf("\tQuick median finished, measured %lld nanoseconds.\n", tf - t0);
-#else
-            // Code to count basic operations goes here. 
 #endif
         } // end trials for.
 
-#ifndef COUNT_OPS
         // At this point, we need to take the average to make any sense of our
         // result. Awkward cast to make sure this is not an integer division.
         double bfAverage = bfTotal / (double)numTrials;
@@ -147,7 +154,6 @@ int main(int argc, char *argv[])
         // Now we an write this result into the file, appending it to whatever
         // was there last.
         fprintf(f, "%zd, %f, %f\n", N, bfAverage, quickAverage);
-#endif
 
     } // end N for.
 

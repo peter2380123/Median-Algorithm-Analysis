@@ -1,5 +1,15 @@
 #include "qmedian.h"
 
+#ifdef COUNT_OPS
+#define SWAP(x, y) \
+do                 \
+{                  \
+    int tmp = x;   \
+    x = y;         \
+    y = tmp;       \
+    ++_quickBasicOps; \ // As #ifdef cannot be used inside another macro definition.
+} while (0);
+#else
 #define SWAP(x, y) \
 do                 \
 {                  \
@@ -7,6 +17,7 @@ do                 \
     x = y;         \
     y = tmp;       \
 } while (0);
+#endif
 
 
 #ifdef COUNT_OPS
@@ -59,9 +70,6 @@ size_t _qm_partition(int *arr, size_t low, size_t high)
             ++pivot_location;
             SWAP(arr[pivot_location], arr[j]);
         }
-#ifdef COUNT_OPS
-        ++_quickBasicOps;
-#endif
     }
     SWAP(arr[low], arr[pivot_location]);
     

@@ -2,9 +2,17 @@
 #include "stdio.h"
 #include "math.h"
 
+#ifdef COUNT_OPS
+static size_t _bfmBasicOps = 0;
+
+size_t bfm_getBasicOps()
+{
+    return _bfmBasicOps;
+}
+#endif
+
 size_t bfm(int *arr, size_t size)
 {
-	size_t _bfmBasicOps = 0;
 	int k = ceil(size / 2.0);
 
 	for (int i = 0; i < size; i++)
