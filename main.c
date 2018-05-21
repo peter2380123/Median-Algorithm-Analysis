@@ -14,7 +14,7 @@
 
 #define MAX(x, y) (((x) >= (y)) ? (x) : (y))
 
-#ifdef COUNT_OPS
+#ifdef COUNT_OPS // This gets defined as part of the compilation flags for medianops.
 const char *brute_result = "BRUTE_OPERATIONS";
 const char *quick_result = "QUICK_OPERATIONS";
 const char *filename = "results_ops.csv";
@@ -39,10 +39,9 @@ int main(int argc, char *argv[])
     size_t start, stop = 100, numIncrements = 1, numTrials = 1;
 
 #if _MSC_VER
-    /*unsigned int start_value;
-      unsigned int stop_value;
-      int numIncrements;
-      int numTrial;*/
+    // Conditional compilation to make it easier to use when working from
+    // anything other than a command line, for example when working in Visual
+    // Studio (which Peter was).
     printf("Declare inclusive start value for the random array: ");
     scanf("%zu", &start);
     printf("Declare inclusive stop value for the random array: ");
@@ -52,6 +51,7 @@ int main(int argc, char *argv[])
     printf("Number of trials to run: ");
     scanf("%zu", &numTrials);
 #else
+    // Otherwise, it's easier to just run it from the command line.
     if (argc < 4 || argc > 5)
     {
         printf("./median start stop numberOfIncrements numberOfTrials\n");
@@ -67,6 +67,8 @@ int main(int argc, char *argv[])
     }
 #endif
 
+    // For ease of use, we calculate the increment needed, given an inclusive
+    // start and stop value and the number of points to generate between.
     double increment = MAX(1, (stop - (double)start) / MAX(1.0, ((double)numIncrements-1.0)));
 
     // Allocate a contiguous block of memory the size of our largest N size.
@@ -77,7 +79,8 @@ int main(int argc, char *argv[])
     int *data = malloc(MAX(start, stop) * sizeof(int));
 
     // As a side-effect, we can now also stop the program from running if the
-    // largest N size is too big for the computer's memory.
+    // largest N size is too big for the computer's memory, rather than failing
+    // when we finally get there.
     if (data == NULL)
     {
         printf("Could not allocate memory. Try a smaller N. (You entered %zd)\n", MAX(start, stop));
@@ -111,6 +114,7 @@ int main(int argc, char *argv[])
             // machine with both a C and C++ compiler -- which is guaranteed in
             // this subject as both languages are accepted.
             populate_random(data, N);
+
 #ifndef COUNT_OPS
             long long t0, tf;
 #endif
